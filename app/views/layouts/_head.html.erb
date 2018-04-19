@@ -1,0 +1,24 @@
+<nav class="navbar navbar-default" role="navigation">
+  <div class="navbar-header">
+    <%= link_to 'diplom project', root_path, :class => "navbar-brand" %>
+  </div>
+
+  <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+    <% if user_signed_in? %>
+        <ul class="nav navbar-nav pull-right active">
+          <li><%= link_to "my image", my_images_path %></li>
+          <li><%= link_to "add", new_image_path %></li>
+          <li class="active">  <%= link_to "Exit", destroy_user_session_path, :method => :delete %> </li>
+        </ul>
+
+    <% else %>
+
+        <ul class="nav navbar-nav pull-right active">
+          <li class="active"> <%= link_to "Sing up", new_user_registration_path %> </li>
+          <li class="active"><%= link_to "Sing in", new_user_session_path %> </li>
+        </ul>
+
+    <% end %>
+    </ul>
+  </div>
+</nav>
