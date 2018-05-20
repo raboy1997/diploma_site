@@ -12,4 +12,8 @@ class UsersController < ApplicationController
     end
   end
 
+  def profiles
+    @user = User.find_by(id: params[:id])
+  end
+
 end
