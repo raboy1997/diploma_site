@@ -1,7 +1,7 @@
 class ImagesController < ApplicationController
 
   def index
-    @images = Image.all
+    @images = Image.of_followed_users(current_user.following).order('created_at DESC').page params[:page]
   end
 
   def new
