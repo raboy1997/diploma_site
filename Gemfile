@@ -32,6 +32,8 @@ gem 'carrierwave'
 gem 'emoji'
 gem 'slim'
 gem 'redis'
+gem 'simple_form'
+
 
 
 group :development, :test do

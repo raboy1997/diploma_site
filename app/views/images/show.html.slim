@@ -1,0 +1,8 @@
+.posts-wrapper.row
+  = render 'image', image: @image
+    .text-center
+      =link_to "Cancel", images_path
+      br
+      - if @image.user == current_user
+        = link_to "Delete Post", image_path(@image),
+                  method: :delete, data: {confirm: "Are you sure you want to delete this post?"}
