@@ -1,0 +1,19 @@
+.post-bottom
+  .caption
+    .caption-content
+      .user-name
+        = image.user.name
+      .time-ago
+        = time_ago_in_words image.created_at
+      .image.center-block
+        = link_to (image_tag image.image, class: 'img-responsive'), image_path(image)
+      = image.title
+    .comments id= "comments_#{image.id}"
+      - if image.comments
+        = render image.comments, image: image
+  .comment-like-form.row
+    .like-button.col-sm-1
+      span(class="glyphicon glyphicon-heart-empty")
+    .comment-form.col-sm-11
+      = form_for([image, image.comments.build], remote: true) do |f|
+        = f.text_field :content, placeholder: 'Add a comment...', class: "comment_content", id: "comment_content_#{image.id}"

@@ -1,7 +1,8 @@
-.box
-= form_for @image do |b|
-.form-group
-= b.label 'Your Image', :class => 'control-label col-lg-2'
-= b.file_field :image, :class => 'form-control'
-.col-lg-10
-= b.submit 'Create', class: 'btn'
+.form-wrapper
+  = simple_form_for @image, html: { class: 'form-horizontal', multipart: true } do |f|
+    .form-group
+      = f.input :image, as: :file
+    .form-group.text-center
+      = f.input :title
+    .form-group.text-center
+      = f.button :submit, class: 'btn-success'
