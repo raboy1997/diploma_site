@@ -2,7 +2,7 @@ class ImagesController < ApplicationController
 
   def index
     #@images = Image.of_followed_users(current_user.following).order('created_at DESC')
-    @images = Image.all
+    @images = Image.all.order('created_at DESC').page(params[:page]).per(5)
   end
 
   def new
@@ -10,9 +10,8 @@ class ImagesController < ApplicationController
   end
 
   def create
-    byebug
-    @image = Image.create(image_params)
-    @image.user_id = current_user
+    @image = Image.new(image_params)
+    @image.user = current_user
     respond_to do |format|
       if @image.save
         format.html { redirect_to root_path, notice: 'Image was successfully created.' }
@@ -20,6 +19,19 @@ class ImagesController < ApplicationController
       else
         format.html { render :new }
       end
+    end
+  end
+
+  def edit
+  end
+
+  def update
+    if @image.update(image_params)
+      flash[:success] = "Post updated."
+      redirect_to root_path
+    else
+      flash[:alert] = "Update failed.  Please check the form."
+      render :edit
     end
   end
 

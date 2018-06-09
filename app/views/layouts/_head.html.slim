@@ -32,6 +32,6 @@ nav.navbar.navbar-default
           li= link_to 'Exit', destroy_user_session_path, method: :delete
         - else
           li
-            = link_to "Login", '#'
+            = link_to "Login", new_user_registration_path
           li
-            = link_to "Register", '#'
+            = link_to "Register", new_user_session_path

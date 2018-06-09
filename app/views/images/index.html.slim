@@ -1,3 +1,5 @@
-.posts-wrapper.row
-  -@images.each do |image|
-    = render 'image', image: image
+#posts
+  = render 'images'
+
+#paginator.text-center
+  = link_to_next_page @images, 'LOAD MORE', remote: true, id: 'load_more'

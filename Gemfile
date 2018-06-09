@@ -33,6 +33,7 @@ gem 'emoji'
 gem 'slim'
 gem 'redis'
 gem 'simple_form'
+gem 'kaminari', '~> 0.16.3'
 
 
 
