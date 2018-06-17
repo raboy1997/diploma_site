@@ -1,7 +1,13 @@
 Rails.application.routes.draw do
 
-  get 'relationships/follow_user'
+  get ':user_id', to: 'profiles#show', as: :profile
+  get ':user_id/edit', to: 'profiles#edit', as: :edit_profile
+  patch ':user_id/edit', to: 'profiles#update', as: :update_profile
 
+  get 'browse', to: 'images#browse', as: :browse_posts
+
+
+  get 'relationships/follow_user'
   get 'relationships/unfollow_user'
 
   mount ActionCable.server => '/cable'
@@ -15,8 +21,8 @@ Rails.application.routes.draw do
   get '/my_images', to: 'images#my_images', as: 'my_images'
   get '/user_profiles/:id', to: 'users#profiles', as: 'user_profiles'
 
-  post ':id/follow_user', to: 'relationships#follow_user', as: :follow_user
-  post ':id/unfollow_user', to: 'relationships#unfollow_user', as: :unfollow_user
+  post ':user_id/follow_user', to: 'relationships#follow_user', as: :follow_user
+  post ':user_id/unfollow_user', to: 'relationships#unfollow_user', as: :unfollow_user
 
 
   devise_for :users

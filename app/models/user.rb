@@ -4,6 +4,9 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
+  mount_uploader :avatar, AvatarUploader
+
+
   has_many :images
   has_many :authored_conversations, class_name: 'Conversation', foreign_key: 'author_id'
   has_many :received_conversations, class_name: 'Conversation', foreign_key: 'received_id'
@@ -16,6 +19,8 @@ class User < ApplicationRecord
   has_many :following, through: :following_relationships, source: :following
 
   has_many :comments, dependent: :destroy
+
+
 
   def name
     email.split('@')[0]
