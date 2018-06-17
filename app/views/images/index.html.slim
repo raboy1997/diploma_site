@@ -1,5 +1,1 @@
-#posts
-  = render 'images'
-
-#paginator.text-center
-  = link_to_next_page @images, 'LOAD MORE', remote: true, id: 'load_more'
+= render 'post_dashboard', posts: @images

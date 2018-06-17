@@ -1,8 +1,8 @@
 class ImagesController < ApplicationController
 
   def index
-    #@images = Image.of_followed_users(current_user.following).order('created_at DESC')
-    @images = Image.all.order('created_at DESC').page(params[:page]).per(5)
+    @images = Image.of_followed_users(current_user.following).page(params[:page]).per(5)
+    # @images = Image.all.order('created_at DESC').page(params[:page]).per(5)
   end
 
   def new
@@ -47,6 +47,10 @@ class ImagesController < ApplicationController
 
   def my_images
     @my_images = current_user.images
+  end
+
+  def browse
+    @images = Image.all.order('created_at DESC').page params[:page]
   end
 
   private

@@ -1,7 +1,7 @@
 class RelationshipsController < ApplicationController
 
   def follow_user
-    @user = User.find_by(id: params[:id])
+    @user = User.find_by(id: params[:user_id])
     if current_user.follow @user.id
       respond_to do |format|
         format.html { redirect_to root_path }
@@ -11,7 +11,7 @@ class RelationshipsController < ApplicationController
   end
 
   def unfollow_user
-    @user = User.find_by(id: params[:id])
+    @user = User.find_by(id: params[:user_id])
     if current_user.unfollow @user.id
       respond_to do |format|
         format.html { redirect_to root_path }
